@@ -1,0 +1,31 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+		<!-- Navigation Bar -->
+	<b:navBar brand-img="resources/images/logo2.png"
+		brand-style-class="navColor" brandHref="#" fixed="top" sticky="true"
+		style="font-family: museo-slab, Georgia, Times New Roman,Times,serif; font-size:15px">
+		<b:navbarLinks styleClass="navbar-right">
+			<b:navLink value="Homepage" href="#" iconAwesome="home"></b:navLink>
+			<b:dropMenu value="System" iconAwesome="cogs">
+				<b:navLink value="Login" href="#" iconAwesome="sign-in"></b:navLink>
+				<b:navLink value="Logout" href="#" iconAwesome="sign-in"></b:navLink>
+				<b:navLink value="User Management" href="#" iconAwesome="user"></b:navLink>
+				<b:navLink value="Change User Password" href="#" iconAwesome="key"></b:navLink>
+				<b:navLink value="System Setting" href="#" iconAwesome="cog"></b:navLink>
+				<b:navLink value="Data Backup/Extract" href="#"
+					iconAwesome="database"></b:navLink>
+				<b:navLink value="Event Management" href="#"
+					iconAwesome="calendar-o"></b:navLink>
+			</b:dropMenu>
+			<b:dropMenu value="Ship Manager" iconAwesome="credit-card">
+
+			</b:dropMenu>
+			<b:dropMenu value="Reporting" iconAwesome="file-text">
+
+			</b:dropMenu>
+		</b:navbarLinks>
+	</b:navBar>
+</ui:composition>

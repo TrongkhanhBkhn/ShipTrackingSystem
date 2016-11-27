@@ -4,51 +4,46 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:b="http://bootsfaces.net/ui" xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Insert title here</title>
+	<title>Ship map stracking</title>
 	<script
 		src="http://maps.google.com/maps/api/js?key=AIzaSyDpMCBQwfKzLZq5hU1b1Um-QH6e3tLxseg"
 		type="text/javascript"></script>
+	<meta http-equiv="X-UA-Conpatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="bootstrap-theme.min.css" />
+	<h:outputStylesheet library="css" name="bootstrap.css" />
 </h:head>
-
 <h:body>
-
-	<script type="text/javascript">
-		function geocode() {
-			PF('geoMap').geocode(document.getElementById('address').value);
-		}
-
-		function reverseGeocode() {
-			var lat = document.getElementById('lat').value, lng = document
-					.getElementById('lng').value;
-
-			PF('revGeoMap').reverseGeocode(lat, lng);
-		}
-	</script>
-
-	<h:form prependId="false" id="form">
-		<h3>Reverse Geocode</h3>
-		<h:panelGrid columns="5" style="margin-bottom:10px" cellpadding="5">
-			<p:outputLabel for="lat" value="Lat:" />
-			<p:inputText id="lat" />
-			<p:outputLabel for="lng" value="Lng:" />
-			<p:inputText id="lng" />
-			<p:commandButton value="HYBRID" actionListener="#{geocodeView.change}" update=":form:revGeoGmap"></p:commandButton>
-			<p:commandButton value="Reverse Geocode" icon="ui-icon-search"
-				onclick="reverseGeocode()" type="button" />
-		</h:panelGrid>
-
-		<p:gmap id="revGeoGmap" widgetVar="revGeoMap"
-			center="#{geocodeView.centerRevGeoMap}" zoom="7" type="#{geocodeView.type}"
-			model="#{geocodeView.revGeoModel}" style="width:100%;height:1000px">
-			<p:ajax event="reverseGeocode"
-				listener="#{geocodeView.onReverseGeocode}" update="@this" />
-		</p:gmap>
-
-	</h:form>
-
+	<ui:include src="/common/header.xhtml">
+	</ui:include>
+	<div class="container">
+		<h:form id="form" prependId="false">
+			<p:gmap id="shipMap" widgetVar="revGeoMap"
+				center="#{shipMapView.centerRevGeoMap}" zoom="6" type="ROADMAP"
+				model="#{shipMapView.shipModel}" style="width:100%;height:600px"
+				streetView="true">
+				<p:ajax event="overlaySelect"
+					listener="#{shipMapView.onMarkerSelect}" />
+				<p:gmapInfoWindow id="infoWindow" maxWidth="100">
+					<p:outputPanel
+						style="text-align: center; display: block; margin: auto" >
+						<p:graphicImage name="images/#{shipMapView.marker.data}"
+							height="150" />
+						<h:outputText value="Ten Tau: #{shipMapView.marker.title}"  />
+					</p:outputPanel>
+				</p:gmapInfoWindow>
+			</p:gmap>
+			<b:poll interval="1" update=":form:shipMap"
+				actionListener="#{shipMapView.Initation}"></b:poll>
+		</h:form>
+	</div>
+	<h:outputScript library="js" name="bootstrap.js"></h:outputScript>
+	<h:outputScript library="js" name="bootstrap.min.js"></h:outputScript>
+	<ui:include src="/common/footer.xhtml"></ui:include>
 </h:body>
 </h:html>
