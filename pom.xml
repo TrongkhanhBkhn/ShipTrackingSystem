@@ -8,7 +8,6 @@
 	<name>ShipTrackingSystem</name>
 	<description>ShipTrackingSystem</description>
 	<dependencies>
-		<!-- Bootfaces -->
 		<dependency>
 			<groupId>net.bootsfaces</groupId>
 			<artifactId>bootsfaces</artifactId>
