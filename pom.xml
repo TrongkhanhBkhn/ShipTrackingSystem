@@ -77,7 +77,6 @@
 			<version>5.0.2.Final</version>
 		</dependency>
 
-		<!-- optional -->
 
 		<dependency>
 			<groupId>org.hibernate</groupId>
