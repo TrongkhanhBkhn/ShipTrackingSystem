@@ -13,7 +13,7 @@
 			<artifactId>bootsfaces</artifactId>
 			<version>0.8.5</version>
 			<scope>compile</scope>
-		</dependency>
+sf;saf		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
